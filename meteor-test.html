@@ -1,0 +1,29 @@
+<head>
+	<title>meteor-test</title>
+</head>
+
+<body>
+	<h1>Welcome to Meteor!</h1>
+
+	{{> ticketList}} 	<!-- Render the template -->
+
+	{{> newTicket}}
+
+</body>
+
+<template name="ticketList">
+	<ul class="ticket-list">
+		{{#each tickets}}
+			<li>
+				<h1>{{title}}</h1>
+				<h2>{{requester}}</h2>
+			</li>
+		{{/each}}
+	</ul>
+</template>
+
+<template name="newTicket">
+	<form class="new-ticket">
+		<input type="text" name="title" />
+	</form>
+</template>
