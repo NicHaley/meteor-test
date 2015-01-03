@@ -3,13 +3,14 @@ if (Meteor.isClient) {
     // JS event handler listens for submit action in the form
     'submit .new-ticket': function(event){
       var enteredTitle = event.target.title.value;
-
+      console.log(event)
       // Grab values from the form to store in the database
-      Tickets.insert({title: enteredTitle, requester: "Nic"});
+      Tickets.insert({title: enteredTitle, requester: Meteor.user().username});
 
       // clear form
       event.target.title.value = "";
 
+      // Tells the web browser to not do the default form submit action since we have already handled it.
       return false;
     }
   });
@@ -21,6 +22,11 @@ if (Meteor.isClient) {
       return Tickets.find({});
     }
   });
+
+  Accounts.ui.config({
+    passwordSignupFields: "USERNAME_ONLY"
+  });
+
 }
 
 if (Meteor.isServer) {
